@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Place extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "place_id")
     private UUID placeId;
 
@@ -36,8 +36,8 @@ public class Place extends BaseTimeEntity {
     @Column(name = "longitude", nullable = false) //경도
     private Double longitude;
 
-    @Column(name = "image_url", columnDefinition = "TEXT")
+    @Lob //대용량 텍스트 처리
+    @Column(name = "image_url")
     private String imageUrl;
-
 
 }

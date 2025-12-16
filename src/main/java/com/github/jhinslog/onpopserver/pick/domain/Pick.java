@@ -20,7 +20,7 @@ import java.util.UUID;
 public class Pick {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "pick_id")
     private UUID pickId;
 

@@ -15,18 +15,19 @@ import java.util.UUID;
 public class PopStatus {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "status_id")
     private UUID statusId;
 
     @OneToOne(fetch = FetchType.LAZY)//지연 로딩 : 불필요한 테이블 정보 조회 지연.
-    @JoinColumn(name = "place_id")
+    @JoinColumn(name = "place_id", unique = true, nullable = false, updatable = false)  //1:1 관계, FK
     private Place place;
 
     @Column(name = "congestion_level", nullable = false, length = 20)
     private String congestionLevel; //혼잡도 등급
 
-    @Column(name = "congestion_msg", columnDefinition = "TEXT")
+    @Lob
+    @Column(name = "congestion_msg")
     private String congestionMsg;   //혼잡도 메시지
 
     @Column(name = "population_min")

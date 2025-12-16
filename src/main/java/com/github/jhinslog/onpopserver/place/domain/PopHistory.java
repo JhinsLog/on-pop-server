@@ -16,7 +16,7 @@ import java.util.UUID;
 public class PopHistory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID) //UUID 전략 사용.
     @Column(name = "history_id")
     private UUID historyId;
 
