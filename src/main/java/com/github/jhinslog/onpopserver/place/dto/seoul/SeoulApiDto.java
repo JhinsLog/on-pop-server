@@ -44,6 +44,19 @@ public class SeoulApiDto {
         @JsonProperty("WEATHER_STTS")
         private List<WeatherStatus> weatherStatus;      //실시간 날씨 정보
 
+        //Null-Safe Access
+        public LivePpltnStatus getLivePpltnStatus() {
+            return (livePpltnStatus != null && !livePpltnStatus.isEmpty()) ? livePpltnStatus.get(0) : null;
+        }
+
+        public WeatherStatus getWeatherStatus() {
+            return (weatherStatus != null && !weatherStatus.isEmpty()) ? weatherStatus.get(0) : null;
+        }
+
+        public RoadTrafficStatus getRoadTrafficStatus() {
+            return roadTrafficStatus;
+        }
+
     }
 
     /*실시간 인구 현황 DTO (POP_STATUS, POPHISTORY)*/
@@ -87,7 +100,7 @@ public class SeoulApiDto {
         private String roadMsg;             //전체도로소통평균현황 메세지
 
         @JsonProperty("ROAD_TRAFFIC_IDX")
-        private String roadTrafficIdx;      //도로 소통 지표 (원활, 서행, 정체)
+        private String roadTrafficStatus;   //도로 소통 상태값 (원활, 서행, 정체)
     }
 
     /*실시간 지하철 정보 DTO*/
