@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.UUID;
 
-public interface PopHistoryRepository extends JpaRepository<Pick, UUID> {
+public interface PopHistoryRepository extends JpaRepository<PopHistory, UUID> {
 
     //특정 장소의 이력을 시간순으로 조회.
     List<PopHistory> findByPlace_PlaceIdOrderByDataTimeAsc(UUID placeId);
