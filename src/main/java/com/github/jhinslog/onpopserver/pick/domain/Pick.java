@@ -3,9 +3,7 @@ package com.github.jhinslog.onpopserver.pick.domain;
 import com.github.jhinslog.onpopserver.place.domain.Place;
 import com.github.jhinslog.onpopserver.user.domain.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -17,6 +15,8 @@ import java.util.UUID;
         @UniqueConstraint(columnNames = {"user_id", "place_id"}) //1명의 유저가 같은 장소를 중복 픽 불가하도록 제약.
 })
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Pick {
 
     @Id
@@ -35,9 +35,4 @@ public class Pick {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-
-    public Pick(User user, Place place) {
-        this.user = user;
-        this.place = place;
-    }
 }

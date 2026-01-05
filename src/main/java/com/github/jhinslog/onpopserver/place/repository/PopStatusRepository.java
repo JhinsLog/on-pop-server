@@ -1,10 +1,12 @@
 package com.github.jhinslog.onpopserver.place.repository;
 
+import com.github.jhinslog.onpopserver.place.domain.Place;
 import com.github.jhinslog.onpopserver.place.domain.PopStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PopStatusRepository extends JpaRepository<PopStatus, UUID> {
@@ -16,4 +18,7 @@ public interface PopStatusRepository extends JpaRepository<PopStatus, UUID> {
     // 랭킹 조회: 인구수 기준 내림차순 정렬 (E모드)
     @Query("SELECT ps FROM PopStatus ps JOIN FETCH ps.place ORDER BY ps.populationMax DESC")
     List<PopStatus> findAllOrderPopulationMaxDesc();
+
+    //특정 장소의 현재 상태 조회(Collector에서 데이터 갱신시 필요)
+    Optional<PopStatus> findByPlace(Place place);
 }
