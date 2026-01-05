@@ -1,9 +1,7 @@
 package com.github.jhinslog.onpopserver.place.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -13,6 +11,8 @@ import java.util.UUID;
 @Getter
 @Table(name = "POP_HISTORY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class PopHistory {
 
     @Id
@@ -21,7 +21,7 @@ public class PopHistory {
     private UUID historyId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id")
+    @JoinColumn(name = "place_id", nullable = false)
     private Place place;
 
     @Column(name = "congestion_level", nullable = false, length = 20)
