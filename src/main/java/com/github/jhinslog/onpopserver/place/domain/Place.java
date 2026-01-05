@@ -2,8 +2,7 @@ package com.github.jhinslog.onpopserver.place.domain;
 
 import com.github.jhinslog.onpopserver.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -11,6 +10,8 @@ import java.util.UUID;
 @Getter
 @Table(name = "PLACES")
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Place extends BaseTimeEntity {
 
     @Id
@@ -39,5 +40,4 @@ public class Place extends BaseTimeEntity {
     @Lob //대용량 텍스트 처리
     @Column(name = "image_url")
     private String imageUrl;
-
 }
