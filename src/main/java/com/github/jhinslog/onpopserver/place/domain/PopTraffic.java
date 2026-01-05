@@ -1,9 +1,7 @@
 package com.github.jhinslog.onpopserver.place.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -11,6 +9,8 @@ import java.util.UUID;
 @Getter
 @Table(name = "POP_TRAFFIC")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class PopTraffic {
 
     @Id
