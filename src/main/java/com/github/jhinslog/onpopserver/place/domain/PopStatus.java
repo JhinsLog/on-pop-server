@@ -1,8 +1,7 @@
 package com.github.jhinslog.onpopserver.place.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -11,7 +10,9 @@ import java.util.UUID;
 @Entity
 @Getter
 @Table(name = "POP_STATUS")
-@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE) //빌더가 내부적으로 사용할 생성자
+@Builder
 public class PopStatus {
 
     @Id
@@ -48,4 +49,17 @@ public class PopStatus {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;//수집 시간
+
+    /*PoP 업데이트 메서드*/
+    public void updateStatus(String congestionLevel, String congestionMsg,
+                             Integer populationMin, Integer populationMax,
+                             LocalDateTime dataTime, String weatherStatus, Double temperature) {
+        this.congestionLevel = congestionLevel;
+        this.congestionMsg = congestionMsg;
+        this.populationMin = populationMin;
+        this.populationMax = populationMax;
+        this.dataTime = dataTime;
+        this.weatherStatus = weatherStatus;
+        this.temperature = temperature;
+    }
 }
