@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface PopTrafficRepository extends JpaRepository<PopTraffic, UUID> {
 
     //데이터 수집시 기존 주변 교통 정보 삭제 후 재 생성
-    void deleteAllByPlaceteAllByPlace(Place place);
+    void deleteAllByPlace(Place place);
 }
