@@ -40,3 +40,4 @@ out/
 application.yml
 application-prod.yml
 secrets.yml
+compose.yaml
