@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: onpop_db_container
+    environment:
+      - 'POSTGRES_DB={db}'
+      - 'POSTGRES_USER={user}'
+      - 'POSTGRES_PASSWORD={password}'
+    ports:
+      - '{db_port}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
