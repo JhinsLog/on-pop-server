@@ -30,10 +30,10 @@ public class SeoulApiService {
     @Value("${seoul.api.service}")
     private String serviceName;
 
-    @Value("${seoul.api.start_index}")
+    @Value("${seoul.api.start-index}")
     private int startIndex;
 
-    @Value("${seoul.api.end_index}")
+    @Value("${seoul.api.end-index}")
     private int endIndex;
 
     public SeoulApiDto fetchCityData(String areaName) {
