@@ -37,7 +37,6 @@ public class Place extends BaseTimeEntity {
     @Column(name = "longitude", nullable = false) //경도
     private Double longitude;
 
-    @Lob //대용량 텍스트 처리
-    @Column(name = "image_url")
+    @Column(name = "image_url", columnDefinition = "TEXT")
     private String imageUrl;
 }

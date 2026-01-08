@@ -27,7 +27,6 @@ public class PopStatus {
     @Column(name = "congestion_level", nullable = false, length = 20)
     private String congestionLevel; //혼잡도 등급
 
-    @Lob
     @Column(name = "congestion_msg")
     private String congestionMsg;   //혼잡도 메시지
 
