@@ -39,5 +39,6 @@ out/
 ### config yml ###
 application.yml
 application-prod.yml
+application-test.yml
 secrets.yml
 compose.yaml
