@@ -3,6 +3,7 @@ package com.github.jhinslog.onpopserver.place.domain;
 import com.github.jhinslog.onpopserver.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.UUID;
 
@@ -39,4 +40,24 @@ public class Place extends BaseTimeEntity {
 
     @Column(name = "image_url", columnDefinition = "TEXT")
     private String imageUrl;
+
+    @Column(name = "is_active", nullable = false)
+    @ColumnDefault("true")
+    @Builder.Default
+    private boolean isActive = true;
+
+    /* Encapsulation(캡슐화) */
+    //외부에서 setter로 값을 직접적으로 수정하지 않고, 메서드를 통해 상태 변경.
+    public void updateInfo(String placeName, String category, String address, Double latitude, Double longitude) {
+        this.placeName = placeName;
+        this.category = category;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.isActive = true;
+    }
+
+    public void deactivate() {
+        this.isActive = false;
+    }
 }

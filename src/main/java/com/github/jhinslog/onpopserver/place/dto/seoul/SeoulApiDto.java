@@ -17,6 +17,31 @@ public class SeoulApiDto {
     @JsonProperty("CITYDATA")
     private CityData cityData;
 
+    /*장소 마스터 목록 응답용 내부 클래스*/
+    @Getter
+    @NoArgsConstructor
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class MasterPlace {
+        @JsonProperty("AREA_NM")
+        private String areaName;    //장소명
+
+        @JsonProperty("AREA_CD")
+        private String areaCode;    //장소 코드
+
+        @JsonProperty("CATEGORY_NM")
+        private String category;    //카테고리
+
+        @JsonProperty("AREA_ADRES")
+        private String address;     //주소
+
+        @JsonProperty("AREA_X")
+        private Double latitude;    //위도
+
+        @JsonProperty("AREA_Y")
+        private Double longitude;   //경도
+    }
+
+
     @Getter
     @NoArgsConstructor
     @ToString
