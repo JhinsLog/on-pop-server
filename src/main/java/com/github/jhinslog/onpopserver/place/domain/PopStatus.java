@@ -49,6 +49,12 @@ public class PopStatus {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;//수집 시간
 
+    public PopStatus(Place place) {
+        this.place = place;
+        //초기 생성시 데이터 불일치 방지용 기본값 설정
+        this.congestionLevel = "PENDING";
+    }
+    
     /*PoP 업데이트 메서드*/
     public void updateStatus(String congestionLevel, String congestionMsg,
                              Integer populationMin, Integer populationMax,
