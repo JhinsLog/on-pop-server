@@ -37,10 +37,13 @@ class SeoulApiServiceTest {
         assertThat(masterPlaces).isNotNull();
         // 목록이 비어있다면 API 키 설정을 다시 확인해야 합니다.
         if (masterPlaces.isEmpty()) {
-            System.out.println("⚠️ API 응답은 성공했으나 장소 목록이 비어있습니다. API 키를 확인하세요.");
-        } else {
-            assertThat(masterPlaces).isNotEmpty();
-            System.out.println(">>> 가져온 장소 개수: " + masterPlaces.size());
+
+            SeoulApiDto.MasterPlace firstPlace = masterPlaces.get(0);
+            assertThat(firstPlace.getAreaName()).as("장소명이 비어있으면 안 됩니다.").isNotEmpty();
+            assertThat(firstPlace.getAreaCode()).as("장소 코드가 비어있으면 안 됩니다.").isNotEmpty();
+
+            System.out.println(">>> 매핑 성공 확인 - 장소 명: " + firstPlace.getAreaName());
+            System.out.println(">>> 매핑 성공 확인 - 장소 코드: " + firstPlace.getAreaCode());
         }
     }
 
