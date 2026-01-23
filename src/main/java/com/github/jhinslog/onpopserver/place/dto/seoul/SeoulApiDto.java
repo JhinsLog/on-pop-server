@@ -18,7 +18,7 @@ public class SeoulApiDto {
     private CityData cityData;
 
     // 장소 마스터 목록 응답 키
-    @JsonProperty("citydata_master")
+    @JsonProperty("CITYDATA_MASTER")
     private MasterResponse masterResponse;
 
     @Getter
