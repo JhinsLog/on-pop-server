@@ -70,13 +70,20 @@ public class SeoulApiService {
                 .toUri();
 
         try {
-            return webClientBuilder.build()     //1. 클라이언트 생성
-                    .get()                      //2. HTTP 메서드 생성
-                    .uri(uri)                   //3. 요청 URL 설정
-                    .retrieve()                 //4. 응답 추출 시작
-                    .bodyToFlux(SeoulApiDto.MasterPlace.class)  //5. 응답 본문 변환(FLUX)
-                    .collectList()              //6. 리스트 수집 : 스트림을 통해 들어오는 데이터를 List 객체로 변환.(메모리 버퍼링)
-                    .block();                   //7. 동기 처리(대기 모드)
+            /*API Response Mapping*/
+            SeoulApiDto response = webClientBuilder.build()
+                    .get()
+                    .uri(uri)
+                    .retrieve()
+                    .bodyToMono(SeoulApiDto.class)
+                    .block();
+
+            if (response != null && response.getMasterPlaces() != null) {
+                log.info("성공적으로 {}개의 마스터 장소를 불러왔습니다.", response.getMasterPlaces().size());
+                return response.getMasterPlaces();
+            }
+
+            return Collections.emptyList();
         } catch (Exception e) {
             log.info("불러오기 실패한 장소 목록: {}", e.getMessage());
             return Collections.emptyList();
@@ -203,5 +210,4 @@ public class SeoulApiService {
 
         return  LocalDateTime.parse(dateTimeStr, API_DATE_FORMAT);
     }
-
 }
